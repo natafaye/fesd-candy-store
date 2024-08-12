@@ -1,0 +1,66 @@
+{
+  "cart": [
+    {
+      "id": 0,
+      "productId": 3,
+      "amount": 4
+    },
+    {
+      "id": 1,
+      "productId": 1,
+      "amount": 1
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Chocolate Bar",
+      "brand": "SweetTreats",
+      "flavor": "Milk Chocolate",
+      "weight": "100g",
+      "price": 2.5,
+      "quantityInStock": 150,
+      "expirationDate": "2024-12-31"
+    },
+    {
+      "id": 2,
+      "name": "Gummy Bears",
+      "brand": "GummyJoy",
+      "flavor": "Assorted",
+      "weight": "150g",
+      "price": 3,
+      "quantityInStock": 200,
+      "expirationDate": "2025-06-30"
+    },
+    {
+      "id": 3,
+      "name": "Peppermint Stick",
+      "brand": "MintyFresh",
+      "flavor": "Peppermint",
+      "weight": "50g",
+      "price": 1.2,
+      "quantityInStock": 75,
+      "expirationDate": "2024-09-15"
+    },
+    {
+      "id": 4,
+      "name": "Caramel Chews",
+      "brand": "ChewyDelights",
+      "flavor": "Caramel",
+      "weight": "200g",
+      "price": 4,
+      "quantityInStock": 100,
+      "expirationDate": "2025-03-20"
+    },
+    {
+      "id": 5,
+      "name": "Sour Worms",
+      "brand": "SourCandyCo",
+      "flavor": "Sour Apple",
+      "weight": "180g",
+      "price": 3.5,
+      "quantityInStock": 180,
+      "expirationDate": "2024-11-10"
+    }
+  ]
+}
