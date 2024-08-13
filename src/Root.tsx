@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 export default function Root() {
 
@@ -6,10 +6,10 @@ export default function Root() {
     <div className="container">
       <ul className="nav bg-light mb-3 border-bottom">
         <li className="nav-item">
-          <Link to="/" className="nav-link">Products</Link>
+          <NavLink to="/" className="nav-link">Products</NavLink>
         </li>
         <li className="nav-item">
-          <Link to="/cart" className="nav-link">Cart</Link>
+          <NavLink to="/cart" className="nav-link">Cart</NavLink>
         </li>
       </ul>
       <Outlet/>
