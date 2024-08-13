@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react"
-import type { CartItem, Product } from "../types"
+import type { Product } from "../types"
 
-type Props = {
-    cartItems: CartItem[]
-    setCartItems: (newValue: CartItem[]) => void
-    products: Product[]
-    setProducts: (newValue: Product[]) => void
-}
-
-export default function ProductList({
-    setCartItems, cartItems, products, setProducts
-}: Props) {
+export default function ProductList() {
+    const [products, setProducts] = useState<Product[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [isAddingToCart, setIsAddingToCart] = useState(false)
     const [error, setError] = useState<null | string>(null)
@@ -54,10 +46,6 @@ export default function ProductList({
             })
             if (!response.ok) {
                 setError(response.statusText)
-            } else {
-                const newlyCreatedItem = await response.json() // this will have an id
-                // make the change on the frontend
-                setCartItems([...cartItems, newlyCreatedItem])
             }
         } catch (error: any) {
             setError(error.message)
@@ -66,25 +54,28 @@ export default function ProductList({
     }
 
     return (
-        <div className="d-flex flex-wrap gap-3">
-            {isLoading && <p className="text-body-tertiary">Loading...</p>}
-            {error && <p className="text-danger">{error}</p>}
-            {products.map(product => (
-                <div className="card flex-grow-1" key={product.id}>
-                    <div className="card-body">
-                        <h3 className="card-title">{product.name}</h3>
-                        <p className="card-text">{product.brand}</p>
-                        <button
-                            className="btn btn-success"
-                            disabled={isAddingToCart}
-                            onClick={() => addToCart(product.id)}
-                        >
-                            {isAddingToCart ? "Adding..." :
-                                "$" + product.price.toFixed(2)}
-                        </button>
+        <>
+            <h2 className="display-5 mb-4">Craving Something Sweet?</h2>
+            <div className="d-flex flex-wrap gap-3">
+                {isLoading && <p className="text-body-tertiary">Loading...</p>}
+                {error && <p className="text-danger">{error}</p>}
+                {products.map(product => (
+                    <div className="card flex-grow-1" key={product.id}>
+                        <div className="card-body">
+                            <h3 className="card-title">{product.name}</h3>
+                            <p className="card-text">{product.brand}</p>
+                            <button
+                                className="btn btn-success"
+                                disabled={isAddingToCart}
+                                onClick={() => addToCart(product.id)}
+                            >
+                                {isAddingToCart ? "Adding..." :
+                                    "$" + product.price.toFixed(2)}
+                            </button>
+                        </div>
                     </div>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
+        </>
     )
 }

@@ -19,6 +19,16 @@
       "productId": 1,
       "amount": 1,
       "id": 3
+    },
+    {
+      "productId": 1,
+      "amount": 1,
+      "id": 4
+    },
+    {
+      "productId": 3,
+      "amount": 1,
+      "id": 5
     }
   ],
   "products": [

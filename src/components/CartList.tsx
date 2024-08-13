@@ -2,18 +2,14 @@ import { useEffect, useState } from "react"
 import { CartItem, Product } from "../types"
 import CartItemRow from "./CartItemRow"
 
-type Props = {
-    cartItems: CartItem[]
-    setCartItems: (newValue: CartItem[]) => void
-    products: Product[]
-}
-
-export default function CartList({ cartItems, setCartItems, products }: Props) {
+export default function CartList() {
+    const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [products, setProducts] = useState<Product[]>([])
     const [loading, setLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
 
     useEffect(() => {
-        const asyncFunction = async () => {
+        const fetchCart = async () => {
             setLoading(true)
             try {
                 const response = await fetch("http://localhost:3000/cart")
@@ -28,11 +24,30 @@ export default function CartList({ cartItems, setCartItems, products }: Props) {
             }
             setLoading(false)
         }
-        asyncFunction()
+        fetchCart()
+
+        const fetchProducts = async () => {
+            setLoading(true)
+            try {
+                const response = await fetch("http://localhost:3000/products")
+                if (!response.ok) {
+                    setErrorMessage("Oops! There was an error: " + response.statusText)
+                } else {
+                    const data = await response.json()
+                    setProducts(data)
+                    setErrorMessage("")
+                }
+            } catch (error: any) {
+                setErrorMessage("Oops! There was an error: " + error.message)
+            }
+            setLoading(false)
+        }
+        fetchProducts()
     }, [])
 
     return (
         <>
+            <h2 className="display-5 mb-4">Cart</h2>
             {
                 loading ? <p className="text-body-tertiary">Loading...</p> :
                 errorMessage ? <p className="text-danger">{errorMessage}</p> :
